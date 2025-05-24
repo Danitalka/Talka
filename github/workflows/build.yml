@@ -32,3 +32,4 @@ jobs:
         with:
           name: talka-apk
           path: bin/*.apk
+      

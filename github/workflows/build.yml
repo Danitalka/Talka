@@ -1,8 +1,7 @@
 name: Build APK
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -10,7 +9,7 @@ jobs:
 
     steps:
       - name: 📥 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🔧 Setup dependencies
         run: |
@@ -19,7 +18,7 @@ jobs:
           pip install --upgrade pip
           pip install buildozer cython==0.29.36
 
-      - name: 🔧 Install Android SDK and accept licenses
+      - name: 📦 Install Android SDK and accept licenses
         run: |
           mkdir -p $HOME/.android && echo '### User Sources for Android SDK Manager' > $HOME/.android/repositories.cfg
           yes | sdkmanager --licenses || true
@@ -28,9 +27,8 @@ jobs:
         run: |
           buildozer android debug
 
-      - name: 📦 Upload APK
-        uses: actions/upload-artifact@v3
+      - name: 📤 Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: talka-apk
           path: bin/*.apk
-          

@@ -17,7 +17,11 @@ jobs:
           sudo apt update
           sudo apt install -y build-essential ccache git libncurses5:i386 \
           libstdc++6:i386 zlib1g:i386 libncurses5-dev lib32z1 openjdk-17-jdk unzip python3-pip
-          pip install buildozer cython==0.29.36
+          pip install --upgrade pip
+          pip install virtualenv
+          pip install cython==0.29.36
+          pip install buildozer
+          pip install python-for-android
 
       - name: 🛠️ Build APK
         run: |
@@ -28,4 +32,5 @@ jobs:
         with:
           name: talka-apk
           path: bin/*.apk
+
           

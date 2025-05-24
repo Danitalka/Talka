@@ -5,10 +5,11 @@ from kivy.core.clipboard import Clipboard
 class RootWidget(BoxLayout):
     def on_lang_select(self, text):
         pass
+
     def start_process(self):
         self.ids.output_label.text = "🎙️ Sto ascoltando..."
-        # simulazione traduzione
         self.ids.output_label.text = f"🎧 Traduzione: Hello, how are you?"
+
     def copia_traduzione(self):
         testo = self.ids.output_label.text
         if "Tradotto:" in testo or "Traduzione:" in testo:
@@ -16,6 +17,7 @@ class RootWidget(BoxLayout):
             Clipboard.copy(tradotto)
         else:
             Clipboard.copy(testo)
+
     def mostra_copiato(self):
         pass
 

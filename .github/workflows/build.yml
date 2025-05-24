@@ -7,18 +7,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup dependencies
+      - name: 📥 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🔧 Setup dependencies
         run: |
           sudo apt update
           sudo apt install -y build-essential ccache git libncurses5:i386 \
           libstdc++6:i386 zlib1g:i386 libncurses5-dev lib32z1 openjdk-17-jdk unzip python3-pip
           pip install buildozer cython==0.29.36
-      - name: Build APK
+
+      - name: 🛠️ Build APK
         run: |
           buildozer android debug
-      - name: Upload APK
+
+      - name: 📦 Upload APK
         uses: actions/upload-artifact@v3
         with:
           name: talka-apk
